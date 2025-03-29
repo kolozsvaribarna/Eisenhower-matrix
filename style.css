@@ -1,29 +1,186 @@
-@import url('https://fonts.cdnfonts.com/css/fira-mono');
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial;
-    font-family: 'Fira Mono', sans-serif;
-    -ms-overflow-style: none;  /* IE and Edge */
+html {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
     scrollbar-width: none;  /* Firefox */
 }
-*::-webkit-scrollbar {display: none; /* Chrome*/}
-.section-title h1 {
-    background-color: white;
-    text-align: center;
-    margin: 45px auto 45px auto;
-    user-select: none;
+html::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
 }
+body {
+    user-select: none;
+    font-family: arial, sans-serif; /*TODO import firamono / firacode */
+    background-color: #eae7dc;
+}
+h2 {
+    font-variant: small-caps;
+    color: #177f75;
+    font-weight: bold;
+}
+
+.basic-form {
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    font-size: 1.2em;
+}
+
+.basic-form label, input[type=text], input[type=password] {
+    margin: 10px 0;
+}
+
+.basic-form input[type=text], input[type=password] {
+    height: 20px;
+    border-radius: 4px;
+    border: 1.2px solid #177f75;
+}
+
+.basic-form label {
+    color: #177f75;
+}
+
+.submit-section {
+    padding-top: 15px;
+}
+
+.submit-section input[type=submit] {
+    color: white;
+    background-color: #177f75;
+    padding: 5px;
+    border-radius: 4px;
+    border-color: #177f75;
+}
+.msg {
+    position: fixed;
+    width: fit-content;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: whitesmoke;
+    color: black;
+    font-weight: bold;
+    padding: 10px 20px;
+    border: 2.5px solid black;
+    border-radius: 5px;
+    opacity: 1;
+    animation: fadeOut 2s ease-out 1s forwards;
+}
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
+}
+.msg-error {
+    color: #f44336;
+    background-color: #e8e8e8;
+    border: 1px solid #f44336;
+}
+
+.msg-success {
+    color: forestgreen;
+    background-color: #e8e8e8;
+    border: 1px solid forestgreen;
+}
+
+.primary-color {
+    color: #177f75;
+}
+/* PASSWORD */
+input[type=text], input[type=password] {
+    font-size: 1em;
+    width: 25vh;
+}
+.hidden-checkbox {
+    display: none;
+}
+
+.eye-label {
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.eye-label::before {
+    content: "👁";
+    color: #177f75;
+}
+
+.hidden-checkbox:checked + .eye-label::before {
+    color: red;
+}
+
+/* SIDEBAR */
+.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+.sidebar-logout {
+    color: white;
+    background-color: #177f75;
+    padding: 5px;
+    border-radius: 4px;
+    border-color: #177f75;
+    font-size: 18px;
+    position: absolute;
+    bottom: 3vh;
+}
+.sidebar-logout:hover {
+    cursor: pointer;
+}
+.sidepanel {
+    height: 350px;
+    width: 0;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #111; /* Black*/
+    overflow: hidden;
+    padding-top: 60px; /* content from the top */
+    transition: 0.5s;
+}
+.sidepanel a {
+    width: 30vh;
+    padding: 1vh 2vh;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.sidepanel a:hover {
+    color: #f1f1f1;
+}
+.sidepanel .closebtn {
+    width: initial;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+    font-size: 20px;
+    cursor: pointer;
+    background-color: #111;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+}
+
+.openbtn:hover {
+    background-color: #444;
+}
+
+/* ABOUT DROPDOWN */
 .collapsible {
     background-color: #777;
     color: white;
     cursor: pointer;
     padding: 18px 18px 18px 40px;
-    width: 50vw;
+    width: 75vw;
     margin: 15px auto 0 auto;
     border: none;
-    text-align: left;
+    text-align: center;
     outline: none;
     font-size: 15px;
     user-select: none;
@@ -31,133 +188,146 @@
 .active, .collapsible:hover {
     background-color: #555;
 }
-.collapsible:after {
-    content: '\2192';
-    color: white;
-    font-weight: bold;
-    float: right;
-    margin-left: 5px;
-}
-.active:after {
-    content: "\2193";
-}
 .contentCollapsible {
     padding: 0 10px;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
     background-color: whitesmoke;
-    width: 50vw;
+    width: 76vw;
     margin: 0 auto;
     user-select: none;
 }
 .contentCollapsible p {
-    width: 45vw;
+    font-size: 1em;
+    width: 70vw;
     margin: 15px auto 25px auto;
     text-align: justify;
     user-select: none;
     line-height: 1.5em;
 }
+.contentCollapsible ul {
+    padding: 0;
+}
 .contentCollapsible li {
-    width: 47vw;
+    font-size: 1em;
+    width: 70vw;
     margin: 10px auto 20px 5vw;
     text-align: justify;
     user-select: none;
     list-style-type: square;
+    line-break: auto;
 }
-#messageContainer {
-    user-select: none;
-    display: block;
-    position: absolute;
-    float: left;
-    margin: 0 10px 0 25px;
-    padding: 10px 15px;
-    width: 40vh;
-    height: min-content;
-    border: #141414 solid 3px;
+.contentCollapsible li span {
+    text-align: left;
+    line-break: auto;
+    font-weight: bold;
 }
-#messageTitle {
-    text-align: center;
-}
-#messageText {
-    padding: 5px 0;
-}
-#messageButton {
-    position:relative;
-    display: block;
-    margin: 5px 25px 0 auto;
-    padding: 3px;
-    text-align: center;
-    width: 65px;
-    height: 25px;
-    background-color: #fff;
-    border: 1px solid #141414;
-}
-#messageButton:hover {
-    background-color: #f2f2f2;
-}
-#listDo, #listSchedule, #listDelegate, #listDelete {font-weight: bold;}
 #listDo {color: green;}
 #listSchedule {color: orange;}
 #listDelegate {color: blue;}
 #listDelete {color: maroon;}
+
+/* MATRIX BOXES */
+
+/* Main section setup */
 .section-matrix {
-    width: 100%;
+    width: 100vw;
     min-height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-#box_create {
-    background-color: whitesmoke;
-    width: 400px;
-    min-height: 740px;
-    height: fit-content;
-    margin: 20px;
-    border: 2px solid black;
-}
-.matrix {
-    display: block;
-    min-height: fit-content;
+
+/* Container for the matrix and side box */
+.container {
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-#box_do, #box_schedule, #box_delegate, #box_delete {
-    width: 400px;
-    min-height: 350px;
-    height: fit-content;
-    margin: 20px;
-    border: 2px solid black;
-    display: flex;
-    place-content: start;
-    flex-basis: calc(50% - 40px);
+    align-items: flex-start; /* Align items at the top */
     justify-content: center;
-    flex-wrap: wrap;
-    flex-direction: row;
+    gap: 20px; /* Space between matrix and side-box */
+    max-width: 1200px;
+    width: 90%;
+    margin: 4vh auto;
 }
-#box_do {background-color: #c9ee82;}
-#box_schedule {background-color: #eedd82;}
-#box_delegate {background-color: #8293ee;}
-#box_delete {background-color: #eea782;}
-.boxText {
-    position: absolute;
-    font-size: 7vh;
+
+/* Matrix grid (2x2 layout for larger screens) */
+.matrix {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columns */
+    gap: 20px; /* Space between boxes */
+    justify-content: center;
+    width: 85vw;
+    max-width: 900px;
+}
+
+/* Matrix boxes */
+.dropBox {
+    width: 100%;
+    min-height: 45vh;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: relative;
     font-weight: bold;
-    color: whitesmoke;
-    z-index: 1;
-    user-select: none;
-    padding-top: 125px;
+}
+
+/* Side box */
+#box_create {
+    width: 30vw;
+    min-height: 86.5vh;
+    border: 2px solid black;
+    text-align: center;
+    padding-top: 50px;
+    background-color: whitesmoke;
+    place-content: start;
+}
+
+#box_do { background-color: #c9ee82; }
+#box_schedule { background-color: #eedd82; }
+#box_delegate { background-color: #8293ee; }
+#box_delete { background-color: #eea782; }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 850px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .matrix {
+        grid-template-columns: 1fr;
+    }
+
+    #box_create {
+        width: 80vw;
+        min-height: 20vh;
+        order: -1;
+    }
+}
+
+.boxText {
+    font-size: 4vmin;
+    font-weight: bold;
+    color: black;
+    z-index: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .createButton {
-    margin: 5px auto auto 5px;
-    position: relative;
+    position: absolute;
+    top: 5px;
+    left: 5px;
     width: 35px;
     height: 35px;
     background: #fff;
     cursor: pointer;
     user-select: none;
     border: 2px solid #177f75;
+    margin: 10px 0 0 10px;
 }
 .createButton:after {
     content: '';
@@ -181,8 +351,8 @@
 }
 .createButton:hover:before,
 .createButton:hover:after {
-  background: #fff;
-  transition: 0.2s;
+    background: #fff;
+    transition: 0.2s;
 }
 .createButton:hover {
     background-color: #177f75;
@@ -191,7 +361,7 @@
 .list_item {
     background-color: white;
     height: 50px;
-    margin: 15px 15px 15px 30px;
+    margin: 4px 15px;
     color: black;
     display: flex;
     align-items: center;
@@ -199,25 +369,25 @@
     border: 1px solid black;
     border-radius: 4px;
     max-width: 280px;
-    z-index: 10;
+    z-index: 1;
 }
-.list_item input[type=textarea] {
+.list_item input[type=text] {
     background-color: transparent;
     color: black;
     font-weight: bold;
-    border: none;
+    margin: 0;
     margin-left: 10px;
-    padding: 10px 5px;
     width: 200px;
     outline: none;
+    border: none;
 }
-.list_item input[type=textarea]::placeholder {
-    color: black;
+.list_item input[type=text]::placeholder {
+    color: #808080;
     font-weight: bold;
-    opacity: 0.75;
+    /*opacity: 0.75;*/
 }
 .delButt {
-    margin: 0 15px 0 auto;
+    margin: 0 10px 0 auto;
     background-color: #e8e8e8;
     border: none;
     border-radius: 15px;
@@ -231,27 +401,4 @@
     height: 20px;
     width: 20px;
     user-select: none;
-}
-.footer {
-    user-select: none;
-    background-color: #141414;
-    width: 100%;
-    height: 7vh;
-    color: white;
-    display: flex;
-    place-items: center;
-    justify-content: right;
-}
-.footer p {
-    margin: auto 20px;
-    font-weight: 500;
-}
-.footer a {
-    text-decoration: none;
-    color: maroon;
-    font-weight: bold;
-}
-.redDecour {
-    color: maroon;
-    font-weight: bolder;
 }
